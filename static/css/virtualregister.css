@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #50E3C2;
+    --bg-gradient: linear-gradient(135deg, #4A90E2, #50E3C2);
+    --text-color: #333;
+    --white: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f9fc;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.navbar {
+    background: var(--bg-gradient);
+    box-shadow: 0 4px 6px var(--card-shadow);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--white) !important;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: var(--white) !important;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: color var(--transition-speed);
+}
+
+.nav-link:hover {
+    color: #f0f0f0 !important;
+}
+
+.btn-login {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.btn-login:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px var(--card-shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--card-shadow);
+}
+
+.jumbotron {
+    background: var(--bg-gradient);
+    color: var(--white);
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.jumbotron h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.jumbotron p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+footer {
+    background: var(--bg-gradient);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    font-weight: 600;
+    margin-top: 30px;
+    box-shadow: 0 -4px 6px var(--card-shadow);
+}
+
+input[type="search"], .form-control {
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    transition: border-color var(--transition-speed);
+}
+
+input[type="search"]:focus, .form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+}
+
+#btn {
+    background: var(--bg-gradient);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+#btn:hover {
+    transform: translateY(-3px);
+    background: #4A80D2;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.option {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: border-color var(--transition-speed), background-color var(--transition-speed);
+}
+
+.option:hover, .option:focus {
+    border-color: var(--primary-color);
+    background-color: #f0f8ff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+}
+
+.dropdown-item {
+    font-weight: 500;
+    transition: background-color var(--transition-speed);
+}
+
+.dropdown-item:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}

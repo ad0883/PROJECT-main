@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Patients Booking
+{% endblock title %}
+
+{% block body %}
+
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <!-- Doctors Card -->
+    <div class="col-md-5 mb-4">
+      <div class="card shadow-lg animate__animated animate__fadeIn" style="width: 100%;">
+        <img src="static/images/doc.jpg" class="card-img-top" alt="Doctor Image">
+        <div class="card-body">
+          <h5 class="card-title">Hospital Doctors</h5>
+          <p class="card-text">Our team of professional doctors:</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for doctor in doct %}
+            <li class="list-group-item">Dr. {{ doctor.doctorname }} — {{ doctor.dept }}</li>
+          {% else %}
+            <li class="list-group-item">No doctors available.</li>
+          {% endfor %}
+        </ul>
+        <div class="card-body">
+          <a href="#" class="card-link">Contact Us</a>
+          <a href="#" class="card-link">About Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="col-md-5">
+      <div class="card shadow-lg animate__animated animate__fadeIn">
+        <div class="card-header text-center bg-dark text-white">
+          <h4 class="mb-0">Book Your Slot</h4>
+        </div>
+        <div class="card-body">
+          <!-- Flash Messages -->
+          {% with messages=get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          <div>
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+              {{message}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% endwith %}
+
+          <form action="/patients" method="post">
+            <div class="mb-3">
+              <input type="email" class="form-control" id="email" value="{{current_user.email}}" name="email" required placeholder="Email Address">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="mb-3">
+              <select class="form-control" id="gender" name="gender" required>
+                <option selected>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <select class="form-control" id="slot" name="slot" required>
+                <option selected>Slot</option>
+                <option value="morning">Morning</option>
+                <option value="evening">Evening</option>
+                <option value="night">Night</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <input type="time" class="form-control" name="time" required>
+            </div>
+            <div class="mb-3">
+              <input type="date" class="form-control" name="date" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="disease" name="disease" placeholder="Disease" required>
+            </div>
+            <div class="mb-3">
+              <select class="form-control" id="dept" name="dept" required>
+                <option selected>Select Doctor Department</option>
+                {% for d in doct %}
+                <option value="{{d.dept}}">{{d.dept}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3">
+              <input type="number" class="form-control" id="number" name="number" placeholder="Phone Number" required>
+            </div>
+            <button type="submit" id="btn" class="btn btn-dark btn-sm btn-block">Book</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Optional: Custom CSS -->
+<style>
+  .card {
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+</style>
+
+<!-- Include Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+{% endblock body %}

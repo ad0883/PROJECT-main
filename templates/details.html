@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Patient Details
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="container mt-4">
+  <h2 class="mb-4">Patient Information</h2>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>PID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Slot</th>
+        <th>Disease</th>
+        <th>Time</th>
+        <th>Date</th>
+        <th>Department</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for patient in patients %}
+      <tr>
+        <td>{{ patient.pid }}</td>
+        <td>{{ patient.email }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.gender }}</td>
+        <td>{{ patient.slot }}</td>
+        <td>{{ patient.disease }}</td>
+        <td>{{ patient.time }}</td>
+        <td>{{ patient.date }}</td>
+        <td>
+          {% if not patient.dept %}
+          <form method="POST" style="display: flex; gap: 0.5rem;">
+            <input type="hidden" name="pid" value="{{ patient.pid }}">
+            <select name="department" class="form-control" required>
+              <option value="">Select</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="General Medicine">General Medicine</option>
+            </select>
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+          </form>
+          {% else %}
+          {{ patient.dept }}
+          {% endif %}
+        </td>
+        <td>{{ patient.number }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock body %}

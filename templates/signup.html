@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Signup
+{% endblock title %}
+
+{% block body %}
+<!-- Signup Content -->
+<div class="main-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-8 col-md-6 col-lg-4">
+        <!-- Flash Messages -->
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="messages-container mb-3">
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Signup Card -->
+        <div class="card shadow-lg animate__animated animate__fadeIn">
+          <div class="card-header text-center bg-dark text-white py-3">
+            <h4 class="mb-0 fw-light">Sign Up</h4>
+          </div>
+          <div class="card-body p-4">
+            <form action="/signup" method="POST">
+              <div class="mb-4">
+                <label for="username" class="form-label text-muted">Username</label>
+                <input type="text" class="form-control form-control-lg bg-light border-0" id="username" name="username" required>
+              </div>
+
+              <div class="mb-4">
+                <label for="usertype" class="form-label text-muted">User Type</label>
+                <select class="form-select form-select-lg bg-light border-0" id="usertype" name="usertype" required>
+                  <option value="" selected disabled>Select user type</option>
+                  <option value="Patient">Patient</option>
+                  <option value="Doctor">Doctor</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label for="email" class="form-label text-muted">Email Address</label>
+                <input type="email" class="form-control form-control-lg bg-light border-0" id="email" name="email" required>
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+
+              <div class="mb-4">
+                <label for="password" class="form-label text-muted">Password</label>
+                <input type="password" class="form-control form-control-lg bg-light border-0" id="password" name="password" required>
+              </div>
+
+              <button type="submit" class="btn btn-dark btn-lg w-100 mb-3">Sign Up</button>
+            </form>
+            <div class="text-center">
+              <small class="text-muted">Already a User? <a href="/login" class="text-primary text-decoration-none">Login</a></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include Vanta.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
+
+<!-- Initialize Vanta.js -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  VANTA.WAVES({
+    el: "body",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: 0x1a1a1a,
+    shininess: 50,
+    waveHeight: 20,
+    waveSpeed: 0.5,
+    zoom: 1
+  });
+});
+</script>
+
+<!-- Custom CSS -->
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  background: #1a1a1a;
+}
+
+.main-content {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  padding: 2rem 0;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  border-radius: 16px 16px 0 0 !important;
+  border-bottom: none;
+}
+
+.form-control,
+.form-select {
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.btn {
+  transition: all 0.3s ease;
+  padding: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Messages container styling */
+.messages-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+  max-width: 90%;
+  width: 350px;
+}
+
+.alert {
+  border: none;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Override any base template background */
+.container-fluid, 
+.container,
+main,
+#content {
+  background: transparent !important;
+}
+
+/* Ensure navbar stays on top */
+.navbar {
+  position: relative;
+  z-index: 2;
+  background: rgba(33, 37, 41, 0.95) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .card {
+    margin: 0 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .messages-container {
+    width: 90%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+</style>
+
+{% endblock body %}
